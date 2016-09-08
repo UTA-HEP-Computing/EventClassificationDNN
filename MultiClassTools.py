@@ -31,7 +31,7 @@ def LoadData(Samples, FractionTest=.1, MaxEvents=-1, MinEvents=-1):
 
         SKey=S[1]+"_Inst"+str(S[2])
 
-        f=h5py.File(S[0])
+        f=h5py.File(S[0],"r")
         Data[SKey]=f[S[1]]
         N=np.shape(Data[SKey])[0]
 
