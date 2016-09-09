@@ -107,7 +107,7 @@ if Train:
     MyModel.MetaData["FinalScore"]=score
 
 # Save 
-MyModel.SaveModel()
+MyModel.Save()
 
 # Analysis
 from EventClassificationDNN.Analysis import MultiClassificationAnalysis
