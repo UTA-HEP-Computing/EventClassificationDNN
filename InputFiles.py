@@ -17,7 +17,7 @@ Files=[]
 
 
 for InputData in InputFiles:
-    InputData="/data/afarbin/crogan/h5/"+InputData
+    InputData="/scratch/data-backup/afarbin/crogan/h5/"+InputData
     Files+= [
         [InputData, "AA_Gen"],
         [InputData, "AB_Gen"],
