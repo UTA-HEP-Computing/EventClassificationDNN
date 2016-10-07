@@ -48,13 +48,17 @@ for Fs in xrange(0,len(FieldGroups)):
         yy1=Test_X[var]
         yy1[:]= 1./(GroupMaxs[Fs]-GroupMins[Fs])* (yy1-GroupMins[Fs])
 
+Train_X_N=Train_X
+
 # Keep Only selected Variables
 Train_X=Train_X[SelectedFields[VarSet]]
 Test_X=Test_X[SelectedFields[VarSet]]
 
+Train_X_S=Train_X
+
 # Now Lets Simplify the structure (Note this requires everything to be a float)
-Train_X=Train_X.view(np.float).reshape(Train_X.shape + (-1,))
-Test_X=Test_X.view(np.float).reshape(Test_X.shape + (-1,))
+Train_X=Train_X.view(np.float32).reshape(Train_X.shape + (-1,))
+Test_X=Test_X.view(np.float32).reshape(Test_X.shape + (-1,))
 
 # Protect against divide by zero! 
 Train_X=np.nan_to_num(Train_X)
@@ -78,7 +82,7 @@ if LoadModel:
         LoadModel=LoadModel[:-1]
     Name=os.path.basename(LoadModel)
     MyModel=ModelWrapper(Name)
-    MyModel.InDir=os.path.dirname(LoadModel)
+    MyModel.InDir=LoadModel
     MyModel.Load()
 else:
     MyModel=FullyConnectedClassification(Name,N_Inputs,Width,Depth,N_Classes,WeightInitialization)
@@ -90,7 +94,7 @@ MyModel.MetaData["Config"]=Config
 print "Compiling the Model... this will take a while."
 
 optimizer="sgd"
-MyModel.Compile(loss=loss, optimizer=optimizer)
+MyModel.Compile(Loss=loss, Optimizer=optimizer)
 
 model=MyModel.Model
 # Print the summary
