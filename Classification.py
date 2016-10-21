@@ -70,4 +70,4 @@ class FullyConnectedClassification(ModelWrapper):
         self.Model=model
 
     def Compile(self, Loss="categorical_crossentropy", Optimizer="rmsprop"):
-        self.Model.compile(loss=loss, optimizer=optimizer,metrics=["accuracy"])
+        self.Model.compile(loss=Loss, optimizer=Optimizer,metrics=["accuracy"])
